@@ -5,6 +5,11 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
+
+
+
+
+
 const Select = ({
   selection,
   onChange,
@@ -16,9 +21,9 @@ const Select = ({
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true);
+    onChange(newValue);
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
@@ -98,4 +103,13 @@ Select.defaultProps = {
   name: "select",
 }
 
+
+
 export default Select;
+
+
+
+
+
+
+

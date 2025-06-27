@@ -5,11 +5,8 @@
   width: 363px;
   height: 336px;
   cursor: pointer;
-  &--small {
-    width: 274px;
-    height: 190px;
+  & {
     .EventCard__imageContainer {
-      height: 126px;
       min-height: auto;
       overflow: hidden;
     }
@@ -74,3 +71,8 @@
     margin-top: 8px;
   }
 }
+
+.EventCard__imageContainer > img {
+  width: 100%;
+}
+

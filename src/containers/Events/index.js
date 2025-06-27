@@ -59,6 +59,7 @@ const EventList = () => {
               </Modal>
             ))}
           </div>
+          <div id="services" className="ServicesContainer" />
           <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
