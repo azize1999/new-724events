@@ -16,6 +16,7 @@ const Menu = () => {
   return (
     <nav>
       <Logo />
+      {/* Déplacement animé vers la section */}
       <ul>
         <li>
           <a href="#nos-services" onClick={(e) => scrollToSection(e, "services")}>

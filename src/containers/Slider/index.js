@@ -7,30 +7,34 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+  // Tri du plus ancien au plus récent (inverse de l'original)
+  const byDateAsc = data?.focus?.sort((evtA, evtB) =>
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   ) || [];
 
-  const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
-      5000
-    );
-  };
-
+  // Gestion du timer avec cleanup
   useEffect(() => {
-    nextCard();
-    // Cleanup function to clear timeout when component unmounts
-    return () => clearTimeout(nextCard);
-  }, [index, byDateDesc.length]);
+    const timer = setTimeout(() => {
+      setIndex(prevIndex => 
+        prevIndex < byDateAsc.length - 1 ? prevIndex + 1 : 0
+      );
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [index, byDateAsc.length]);
+
+  // Gestion du clic sur les boutons radio
+  const handleRadioChange = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
 
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event) => (
+      {byDateAsc?.map((event, idx) => (
         <div
-          key={`slide-container-${event.id}`}
+          key={`slide-container-${event.id || idx}`} // Fallback to index if id is undefined
           className={`SlideCard SlideCard--${
-            index === byDateDesc.findIndex((evt) => evt.id === event.id) ? "display" : "hide"
+            index === idx ? "display" : "hide"
           }`}
         >
           <img src={event.cover} alt="forum" />
@@ -45,13 +49,13 @@ const Slider = () => {
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((event) => (
+          {byDateAsc.map((event, idx) => (
             <input
-              key={`radio-${event.id}`}
+              key={`radio-${event.id || idx}`} // Fallback to index if id is undefined
               type="radio"
               name="radio-button"
-              checked={index === byDateDesc.findIndex((evt) => evt.id === event.id)}
-              readOnly
+              checked={index === idx}
+              onChange={() => handleRadioChange(idx)}
             />
           ))}
         </div>
