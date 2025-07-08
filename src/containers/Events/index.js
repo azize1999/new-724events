@@ -81,9 +81,9 @@ const EventList = () => {
 
           {pageNumber > 1 && (
            <div className="Pagination">
-      {[...Array(pageNumber)].map((_, n) => (
+      {[...Array(pageNumber).keys()].map((n) => (
         <a 
-        // eslint-disable-next-line react/no-array-index-key
+        
           key={n} 
           href="#events" 
           onClick={() => setCurrentPage(n + 1)}

@@ -11,6 +11,7 @@ const Menu = () => {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" }); // Défilement fluide
     }
+    window.location.hash = `#${id}`;
   };
 
   return (
@@ -34,7 +35,7 @@ const Menu = () => {
           </a>
         </li>
       </ul>
-      <Button title="contact" onClick={(e) => scrollToSection(e, "contact")}>
+      <Button href="#contact" title="contact" onClick={(e) => scrollToSection(e, "contact")}>
         Contact
       </Button>
     </nav>

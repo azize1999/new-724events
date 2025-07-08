@@ -13,4 +13,4 @@ export const MONTHS = {
   12: "décembre",
 };
 // ajouter +1 pour que 0 (janvier) corresponde à la clé 1 dans l’objet MONTHS.
-export const getMonth = (date) => MONTHS[date.getMonth()+1];
+export const getMonth = (date) => MONTHS[date.getMonth()+1]; 
