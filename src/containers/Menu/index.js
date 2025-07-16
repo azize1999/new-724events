@@ -11,7 +11,7 @@ const Menu = () => {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" }); // Défilement fluide
     }
-    window.location.hash = `#${id}`;
+    window.history.replaceState(null, "", `#${id}`);
   };
 
   return (

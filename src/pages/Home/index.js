@@ -14,15 +14,12 @@ import { useData } from "../../contexts/DataContext";
 import "./style.scss";
 
 const Page = () => {
-  const { data, loading, error } = useData();
+  const { data, error } = useData();
   // Trie les événements par date décroissante pour obtenir le plus récent.
   const events = data?.events || [];
   // Ajout de fallback (|| []) pour éviter les erreurs si data est vide ou undefined.
   const last = [...events].sort((a, b) => new Date(b.date) - new Date(a.date))[0] || null;
   // Affiche un message pendant le chargement et en cas d’erreur provenant de l'API.
-  if (loading) {
-    return <div className="loading">Chargement en cours...</div>;
-  }
 
   if (error) {
     return <div className="error">Erreur de chargement : {error.message}</div>;

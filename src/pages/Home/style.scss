@@ -170,7 +170,7 @@ footer {
     font-style: normal;
   }
 }
-// une annimation ajouter pour le style
+/* Une animation ajoutée pour le style */
 .ModalMessage--success {
   font-family: "Manrope", sans-serif;
   padding: 32px;
@@ -182,6 +182,7 @@ footer {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInSlow 1.5s ease-out forwards;
+
 
   div {
     text-align: center;

@@ -26,10 +26,13 @@ export const DataProvider = ({ children }) => {
       setError(err);
     }
   }, []);
-  useEffect(() => {
-    if (data) return;
-    getData();
-  });
+    useEffect(() => {
+      const shouldFetch = !data;
+      if (shouldFetch) {
+        getData();
+      }
+    }, [data, getData]);
+
   
   return (
     <DataContext.Provider
